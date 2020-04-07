@@ -63,3 +63,10 @@ webpack构建机制：模块打包器，会把资源都当成模块，这些模�
   创建search.css文件写入样式代码
   webpack.config.js的modules增加style-loader和css-loader的配置
   npm run build 后增加index.html文件，引入search.js可以看到文件被正确打包
+
+  * 4. 解析Less和SaSS
+  less-loader用于将less转换成css,因为less-loader依赖less,所以less也需要安装
+  ```
+  npm i less less-loader -D
+  ```
+  webpack.config.js的modules增加解析less的配置
