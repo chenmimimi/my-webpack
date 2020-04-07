@@ -71,4 +71,10 @@ webpack构建机制：模块打包器，会把资源都当成模块，这些模�
   ```
   webpack.config.js的modules增加解析less的配置
   SaSS同Less
-  
+
+  * 5. 解析图片
+  ```
+  npm i file-loader -D
+  ```
+  webpack.config.js的modules增加解析file-loader的配置
+  加入图片npm run build后能正常显示
