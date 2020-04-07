@@ -3,10 +3,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './search.scss';
+import chrome from './image/chrome.jpg';
 
 class Search extends React.Component {
   render() {
-    return <div className="search-text">search text</div>
+    return (
+      <div className="search-text">
+        search text
+        <img src={chrome} />
+      </div>
+    )
   }
 }
 
