@@ -51,7 +51,6 @@ webpack构建机制：模块打包器，会把资源都当成模块，这些模�
   npm i react react-dom @babel/preset-react -D
   ```
   .babelrc文件增加babel preset配置@babel/preset-react
-  ```
   增加search组件search.js
   npm run build 后增加index.html文件，引入search.js可以看到文件被正确打包
 
