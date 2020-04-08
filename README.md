@@ -81,8 +81,33 @@ webpack构建机制：模块打包器，会把资源都当成模块，这些模�
 
   url-loader也可以处理图片和字体，可以设置较小资源自动base64
 
-  * 6. 文件监听
-  文件监听是在发现源码发生变化时，自动重新构建出新的输出文件
-  webpack开启监听模式，有两种方式：
-    - 启动webpack命令时，带上--watch参数
-    - 在配置webpack.config.js中设置watch: true
+### 6. 文件监听
+文件监听是在发现源码发生变化时，自动重新构建出新的输出文件
+webpack开启监听模式，有两种方式：
+  - 启动webpack命令时，带上--watch参数
+  - 在配置webpack.config.js中设置watch: true
+
+### 7. 热更新 webpack-dev-server
+WDS不刷新浏览器
+WDS不输出文件，而是放在内存中
+使用HotModuleReplacementPlugin插件
+```
+npm i webpack-dev-server -D
+```
+配置webpack.config.js
+```
+plugins: [
+    new webpack.HotModuleReplacementPlugin()
+  ],
+  devServer: {
+    contentBase: './dist',
+    hot: true,
+  },
+  mode: 'development'
+```
+配置package.json
+```
+"scripts": {
+    "dev": "webpack-dev-server --open"
+  },
+```

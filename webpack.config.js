@@ -1,6 +1,7 @@
 'use strict';
 
 const path = require('path');
+const webpack = require('webpack');
 
 module.exports = {
   // 默认false，也就是不开启
@@ -62,5 +63,12 @@ module.exports = {
       },
     ]
   },
-  mode: 'production'
+  plugins: [
+    new webpack.HotModuleReplacementPlugin()
+  ],
+  devServer: {
+    contentBase: './dist',
+    hot: true,
+  },
+  mode: 'development'
 }
