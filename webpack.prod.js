@@ -1,7 +1,7 @@
 'use strict';
 
 const path = require('path');
-const webpack = require('webpack');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
   // 默认false，也就是不开启
@@ -21,7 +21,7 @@ module.exports = {
   },
   output: {
     path: path.join(__dirname, 'dist'),
-    filename: '[name].js'
+    filename: '[name]_[chunkhash:8].js'
   },
   module: {
     rules: [
@@ -33,14 +33,14 @@ module.exports = {
         test: /\.css$/,
         // loader是链式调用，执行顺序也是从右到左的，所以它会先执行css-loader，然后把执行的结果传递给style-loader
         use: [
-          'style-loader',
+          MiniCssExtractPlugin.loader,
           'css-loader',
         ]
       },
       {
         test: /\.less$/,
         use: [
-          'style-loader',
+          MiniCssExtractPlugin.loader,
           'css-loader',
           'less-loader',
         ]
@@ -48,27 +48,40 @@ module.exports = {
       {
         test: /\.scss$/,
         use: [
-          'style-loader',
+          MiniCssExtractPlugin.loader,
           'css-loader',
           'sass-loader',
         ]
       },
       {
-        test: /.(png|jpg|gif|jpeg)$/,
-        use: 'file-loader',
+        test: /\.(png|jpg|gif|jpeg)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name]_[hash:8][ext]'
+            }
+          }
+        ]
       },
       {
-        test: /.(woff|woff2|eot|ttf|otf)$/,
-        use: 'file-loader',
+        test: /\.(woff|woff2|eot|ttf|otf)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name]_[hash:8][ext]'
+            }
+          }
+        ]
       },
     ]
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin()
+    // css没有独立文件
+    new MiniCssExtractPlugin({
+      filename: `[name][contenthash:8].css`
+    })
   ],
-  devServer: {
-    contentBase: './dist',
-    hot: true,
-  },
-  mode: 'development'
+  mode: 'production'
 }
