@@ -116,3 +116,6 @@ plugins: [
 * Hash: 和整个项目的构建相关，只要项目文件有修改，整个项目构建的hash值就会更改
 * Chunkhash: 和webpack打包的chunk有关，不同的entry会生成不同的chunkhash值
 * Contenthash: 根据文件内容来定义hash，文件内容不变，则contenthash不变
+```
+npm i mini-css-extract-plugin -D
+```
